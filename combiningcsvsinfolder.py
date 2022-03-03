@@ -17,13 +17,6 @@ def combine_pdf (input,output):
         df['filename'] = file.split('/')[-1]
         combined_dataframe.append(df)
     master_df = pd.concat(combined_dataframe, ignore_index=True, sort=True)
-    files_collection = glob.glob(os.path.join(path, "*.csv"))
-    combined_dataframe = []
-    for file in files_collection:
-        df = pd.read_csv(file, sep=',')
-        df['filename'] = file.split('/')[-1]
-        combined_dataframe.append(df)
-    master_df = pd.concat(combined_dataframe, ignore_index=True, sort=True)
     return(master_df.to_csv(output,index=False))
 
 
