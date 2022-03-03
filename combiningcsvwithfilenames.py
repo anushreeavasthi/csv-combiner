@@ -8,14 +8,11 @@ import pandas as pd
 
 #number of command line arguments
 n = len(sys.argv)
-print("Total arguments passed:", n)
 
 #Adding them in a list
 arguments=[]
 for i in range(1, n):
     arguments.append(sys.argv[i])
-
-print(arguments)
 
 #Parsing them as a list
 combined_dataframe=[]
@@ -30,6 +27,11 @@ for i in range(0,len(arguments)):
 
 
 master_df.to_csv("temporary.csv",index=False)
+
+with open("temporary.csv", 'r') as csvfile:
+    datareader = csv.reader(csvfile)
+    for row in datareader:
+        print(row)
 
 
 
