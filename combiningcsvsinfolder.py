@@ -1,3 +1,4 @@
+from asyncio.windows_events import NULL
 import csv
 import os
 import sys
@@ -17,16 +18,23 @@ def combine_pdf (input,output):
         df['filename'] = file.split('/')[-1]
         combined_dataframe.append(df)
     master_df = pd.concat(combined_dataframe, ignore_index=True, sort=True)
-    return(master_df.to_csv(output,index=False))
+    status=0
+    if(master_df.empty):
+         status=0
+    else:
+        master_df.to_csv(output,index=False)
+        status=1
+    return(status)
 
 
 combine_pdf(sys.argv[1],"temp.csv")
 
 
-with open("temp.csv", 'r') as csvfile:
+with open("temp.csv", 'r', newline=None) as csvfile:
     datareader = csv.reader(csvfile)
     for row in datareader:
-        print(row)
+         tsv_writer = csv.writer(sys.stdout)
+         tsv_writer.writerow(row)
 
 
     

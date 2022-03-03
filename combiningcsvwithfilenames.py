@@ -1,4 +1,5 @@
 import csv
+from lib2to3.pgen2.token import NEWLINE
 import os
 import sys
 import glob
@@ -31,7 +32,10 @@ master_df.to_csv("temporary.csv",index=False)
 with open("temporary.csv", 'r') as csvfile:
     datareader = csv.reader(csvfile)
     for row in datareader:
-        print(row)
+        tsv_writer = csv.writer(sys.stdout)
+        tsv_writer.writerow(row)
+
+         
 
 
 
