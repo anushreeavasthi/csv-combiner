@@ -29,12 +29,14 @@ def combine_pdf (input,output):
         status=1
     return(status)
 
-#Calling combine_pdf based on command line argument location of folder and storing in a temporary safe file
-combine_pdf(sys.argv[1],"temp.csv")
 
-#Writing output of temporary file to the output file mentioned by user.
-with open("temp.csv", 'r', newline=None) as csvfile:
-    datareader = csv.reader(csvfile)
-    for row in datareader:
-         tsv_writer = csv.writer(sys.stdout)
-         tsv_writer.writerow(row)
+
+if __name__=="__main__":
+    #Calling combine_pdf based on command line argument location of folder and storing in a temporary safe file
+    combine_pdf(sys.argv[1],"temp.csv")
+    #Writing output of temporary file to the output file mentioned by user.
+    with open("temp.csv", 'r', newline=None) as csvfile:
+        datareader = csv.reader(csvfile)
+        for row in datareader:
+            tsv_writer = csv.writer(sys.stdout)
+            tsv_writer.writerow(row)
