@@ -32,9 +32,8 @@ master_df.to_csv("temporary.csv",index=False)
 with open("temporary.csv", 'r') as csvfile:
     datareader = csv.reader(csvfile)
     for row in datareader:
-        tsv_writer = csv.writer(sys.stdout)
-        tsv_writer.writerow(row)
-
+        writer = csv.writer(sys.stdout)
+        writer.writerow(row)
          
 
 
